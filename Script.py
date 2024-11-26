@@ -1,68 +1,60 @@
-import geopandas as gpd
+import streamlit as st
 import folium
-import matplotlib.pyplot as plt
+from streamlit_folium import st_folium
+import geopandas as gpd
 
-# Spécifie le chemin vers ton fichier GeoJSON
-geojson_path = r"C:\Users\Owner\carte_le_gaulois\carte_le_gaulois\departements.geojson"
-
-# Charge le fichier GeoJSON des départements
+# Chargement des départements
+geojson_path = 'path_to_file/departements.geojson'  # Remplace ce chemin par le bon
 departements = gpd.read_file(geojson_path)
 
-# Imaginons que tu aies une liste des départements possédés et manquants
-# Exemple :
-departements_possedes = ["01", "13", "33", "75"]  # Numéros des départements possédés
-departements_manquants = ["02", "14", "34", "95"]  # Numéros des départements manquants
+# Initialiser st.session_state si ce n'est pas déjà fait
+if 'added_departments' not in st.session_state:
+    st.session_state.added_departments = []
 
-# Ajoute une colonne pour indiquer si un département est possédé ou non
-departements['status'] = departements['code'].apply(
-    lambda x: 'Possédé' if x in departements_possedes else 'Manquant'
-)
+# Fonction pour ajouter un département à la liste des départements ajoutés
+def add_department(department_code):
+    if department_code not in st.session_state.added_departments:
+        st.session_state.added_departments.append(department_code)
 
-# Crée une carte centrée sur la France
-m = folium.Map(location=[46.603354, 1.888334], zoom_start=5)
+# Fonction pour supprimer un département de la liste des départements ajoutés
+def remove_department(department_code):
+    if department_code in st.session_state.added_departments:
+        st.session_state.added_departments.remove(department_code)
 
-# Fonction pour styliser les départements en fonction de leur statut (possédé ou manquant)
-def style_function(feature):
-    if feature['properties']['status'] == 'Possédé':
-        return {
-            'fillColor': '#228B22',  # Vert pour les départements possédés
-            'color': 'black',
-            'weight': 1,
-            'fillOpacity': 0.6,
+# Interface Streamlit
+st.title("Carte Interactive des Départements")
+
+# Choisir un département par son code
+department_code = st.selectbox("Choisir un département à ajouter", departements['code'])  # Utilise 'code' à la place de 'ID'
+
+# Ajouter ou supprimer le département à la session si sélectionné
+if st.button("Ajouter le département"):
+    add_department(department_code)
+
+if st.button("Supprimer le département"):
+    remove_department(department_code)
+
+# Créer la carte de base
+m = folium.Map(location=[48.8566, 2.3522], zoom_start=6)  # Centré sur la France
+
+# Ajouter les départements déjà ajoutés sur la carte avec couleurs et bordures
+for dept_code in st.session_state.added_departments:
+    dept = departements[departements['code'] == dept_code]  # Utilise 'code' à la place de 'ID'
+    
+    # Définir la couleur et le style de la géoformée
+    folium.GeoJson(
+        dept,
+        style_function=lambda x: {
+            'fillColor': 'green',  # Couleur de remplissage
+            'color': 'red',        # Couleur de la bordure
+            'weight': 2,           # Poids de la bordure
+            'fillOpacity': 0.5     # Opacité du remplissage
         }
-    else:
-        return {
-            'fillColor': '#FF6347',  # Rouge pour les départements manquants
-            'color': 'black',
-            'weight': 1,
-            'fillOpacity': 0.6,
-        }
+    ).add_to(m)
 
-# Fonction pour changer le style lors du survol
-def highlight_function(feature):
-    return {
-        'fillColor': '#ffaf00',  # Couleur changeante lors du survol
-        'color': 'black',
-        'weight': 2,
-        'fillOpacity': 0.9,
-    }
+# Afficher la carte interactive
+st_folium(m, width=700, height=500)
 
-# Ajoute les départements à la carte avec les interactions
-folium.GeoJson(
-    departements,
-    style_function=style_function,
-    highlight_function=highlight_function,
-    tooltip=folium.GeoJsonTooltip(fields=["nom", "status"], aliases=["Département: ", "Statut: "]),  # Info-bulle
-).add_to(m)
-
-# Enregistre la carte dans un fichier HTML
-m.save('carte_interactive.html')
-
-# Plot de la carte statique avec matplotlib pour visualiser
-fig, ax = plt.subplots(figsize=(10, 10))
-departements.plot(column='status', ax=ax, legend=True,
-                  legend_kwds={'title': "Statut de la collection"},
-                  cmap='RdYlGn',  # Colormap pour visualiser en couleurs les possédés/manquants
-                  edgecolor='black')
-plt.title("Carte des départements collectionnés")
-plt.show()
+# Affichage de la liste des départements ajoutés
+st.write("Départements ajoutés :")
+st.write(st.session_state.added_departments)
