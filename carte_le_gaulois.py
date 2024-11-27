@@ -10,9 +10,15 @@ departements = gpd.read_file(geojson_path)
 
 # Initialisation des listes dans la session Streamlit si elles n'existent pas encore
 if 'departements_possedes' not in st.session_state:
-    st.session_state['departements_possedes'] = ["01", "13", "33", "75"]  # Liste initiale
+    st.session_state['departements_possedes'] = [
+    "01", "03", "06", "07", "08", "10", "13", "15", "18", "21", "23", "25", "26", "29", "30", "31", "34", "37", "38", "41",
+    "42", "43", "44", "45", "46", "49", "50", "52", "54", "57", "59", "60", "62", "63", "66", "68", "69", "71", "72", "73",
+    "75", "76", "77", "78", "80", "81", "83", "84", "87", "89"
+]  # Liste initiale
 if 'departements_doublons' not in st.session_state:
-    st.session_state['departements_doublons'] = {}
+    st.session_state['departements_doublons'] = departements_doublons = {
+    "01": 2, "13": 3, "29": 2, "44": 2, "49": 3, "59": 2,"63": 2,"69": 2,"75": 3,"77": 2,"78": 2,"83": 3,"84": 2,"89": 2,"50": 2,"34": 2,"42": 2,"76": 3,"21": 2,"10": 2
+}
 
 # Récupération des listes depuis la session
 departements_possedes = st.session_state['departements_possedes']
@@ -67,6 +73,7 @@ departements['status'] = departements['code'].apply(
 )
 
 # Création de la première carte
+st.header("Carte des Départements Possédés et Manquants")  # Ajout d'un titre pour la première carte
 m1 = folium.Map(location=[46.603354, 1.888334], zoom_start=5)
 
 # Fonction pour styliser les départements pour la première carte
@@ -97,6 +104,7 @@ folium.GeoJson(
 st_folium(m1, width=700, height=500)
 
 # Création de la deuxième carte pour les doublons
+st.header("Carte des Départements en Doublons")  # Ajout d'un titre pour la deuxième carte
 m2 = folium.Map(location=[46.603354, 1.888334], zoom_start=5)
 
 # Mise à jour du statut des départements pour les doublons
