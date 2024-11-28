@@ -1,11 +1,17 @@
+"""
+Ce module contient la logique pour afficher et gérer les cartes du Gaulois.
+Il fournit des fonctions pour interagir avec la carte et visualiser les informations
+sur les lieux historiques du Gaulois.
+"""
+import json
 import streamlit as st
 import geopandas as gpd
 import folium
 from streamlit_folium import st_folium
-import json
 
 # Chargement du fichier GeoJSON des départements
-geojson_path = r"C:\Users\Owner\carte_le_gaulois\carte_le_gaulois\departements.geojson"
+# Il faut modifier le chemin en fonction de l'emplacement du dossier
+geojson_path = r"C:\Users\tomga\Desktop\py_carte_le_gaulois\src\carte_le_gaulois\departements.geojson"
 departements = gpd.read_file(geojson_path)
 
 # Initialisation des listes dans la session Streamlit si elles n'existent pas encore
@@ -147,8 +153,11 @@ st.header(
 m1 = folium.Map(location=[46.603354, 1.888334], zoom_start=5)
 
 
-# Fonction pour styliser les départements pour la première carte
 def style_function(feature):
+    """
+    Fonction pour styliser les départements pour la première carte
+
+    """
     if feature["properties"]["status"] == "Possédé":
         return {
             "fillColor": "#228B22",  # Vert pour les départements possédés
@@ -156,8 +165,7 @@ def style_function(feature):
             "weight": 1,
             "fillOpacity": 0.6,
         }
-    else:
-        return {
+    return {
             "fillColor": "#FF6347",  # Rouge pour les départements manquants
             "color": "black",
             "weight": 1,
@@ -193,8 +201,11 @@ departements["doublon"] = departements["code"].apply(
 )
 
 
-# Fonction pour styliser les départements pour la deuxième carte
 def style_function_doublon(feature):
+    """
+    Stylisation des départements pour la deuxième carte
+
+    """
     if feature["properties"]["doublon"].startswith("Doublon"):
         return {
             "fillColor": "#FFD700",  # Jaune pour les départements en doublons
@@ -202,8 +213,7 @@ def style_function_doublon(feature):
             "weight": 1,
             "fillOpacity": 0.6,
         }
-    else:
-        return {
+    return {
             "fillColor": "#D3D3D3",  # Gris pour les départements sans doublons
             "color": "black",
             "weight": 1,
