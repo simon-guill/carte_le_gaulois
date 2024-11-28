@@ -1,0 +1,55 @@
+[project]
+name = "carte_le_gaulois"
+version = "0.0.2"
+authors = [
+    {name = "Simon Guillois", email = "simon.guillois@estaca.eu"},
+    {name = "Thomas Gaboreau", email = "thomas.gaboreau@estaca.eu"}
+]
+description = "Projet de visualisation interactive des départements français avec des données de collection 'Le Gaulois'"
+readme = "README.md"
+license = "MIT"
+
+# Liste des dépendances principales pour le projet
+dependencies = [
+    "geopandas",           # Librairie pour la gestion de données géospatiales
+    "folium",              # Librairie pour la création de cartes interactives
+    "matplotlib",          # Librairie pour la visualisation de données
+    "IPython",             # Interface interactive Python
+    "requests",            # Librairie pour faire des requêtes HTTP
+    "pandas",              # Librairie pour la manipulation de données tabulaires
+    "streamlit",           # Librairie pour créer des interfaces utilisateurs interactives
+    "streamlit-folium",    # Intégration de cartes folium dans Streamlit
+    "pytest",              # Framework de tests unitaires
+    "coverage",            # Outil pour mesurer la couverture des tests
+    "importlib-metadata; python_version<\"3.8\"", # Dépendance conditionnelle pour les versions de Python < 3.8
+]
+
+# Dépendances optionnelles pour le développement
+[project.optional-dependencies]
+dev = [
+    "pytest-cov",          # Outil pour étendre coverage avec pytest
+    "black",               # Outil de formatage du code
+    "isort",               # Outil pour trier les imports automatiquement
+    "mypy",                # Vérification des types statiques pour Python
+    "pre-commit",          # Outil pour automatiser les hooks de pré-commit
+]
+
+# Définir les scripts à exécuter
+[project.scripts]
+carte-interactive = "carte_le_gaulois.scripts.carte_le_gaulois:main"
+
+# Configuration pour la couverture de code
+[tool.coverage.run]
+omit = [
+    "scripts/",            # Ne pas inclure les fichiers de script dans la couverture
+    "tests/",              # Ne pas inclure les fichiers de tests dans la couverture
+]
+
+# Configuration de black pour le formatage du code
+[tool.black]
+line-length = 88         # Limite de longueur de ligne de 88 caractères
+target-version = ['py38'] # Cibler la version Python 3.8 et supérieure
+
+# Configuration de isort pour trier les imports selon le style black
+[tool.isort]
+profile = "black"        # Utiliser le profil de style 'black' pour le tri des imports
