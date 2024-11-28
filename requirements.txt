@@ -10,3 +10,4 @@ black==23.9.1
 coverage==7.3.1
 ruff==0.8.0
 pylint==3.3.1
+make==4.4.1

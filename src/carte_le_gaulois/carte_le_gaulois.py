@@ -166,11 +166,11 @@ def style_function(feature):
             "fillOpacity": 0.6,
         }
     return {
-            "fillColor": "#FF6347",  # Rouge pour les départements manquants
-            "color": "black",
-            "weight": 1,
-            "fillOpacity": 0.6,
-        }
+        "fillColor": "#FF6347",  # Rouge pour les départements manquants
+        "color": "black",
+        "weight": 1,
+        "fillOpacity": 0.6,
+    }
 
 
 # Ajout des départements à la première carte avec les styles
@@ -214,11 +214,11 @@ def style_function_doublon(feature):
             "fillOpacity": 0.6,
         }
     return {
-            "fillColor": "#D3D3D3",  # Gris pour les départements sans doublons
-            "color": "black",
-            "weight": 1,
-            "fillOpacity": 0.4,
-        }
+        "fillColor": "#D3D3D3",  # Gris pour les départements sans doublons
+        "color": "black",
+        "weight": 1,
+        "fillOpacity": 0.4,
+    }
 
 
 # Ajout des départements à la deuxième carte avec les styles pour les doublons

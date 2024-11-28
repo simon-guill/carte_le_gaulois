@@ -12,38 +12,44 @@ Ce projet permet de visualiser, gérer et suivre la collection des départements
 
 ## Structure du Projet
 
-- `src/carte_le_gaulois.py` : Script principal contenant l'application Streamlit permettant l'affichage.
-- `tests/` : Contient les tests unitaires pour les fonctions du projet.
-- `departements.geojson` : Fichier GeoJSON des départements utilisé pour générer les cartes.
-
-## Couverture du Code
-
-Les tests couvrent 69 % du code. Cependant, les interactions utilisateur via les boutons Streamlit (comme "Ajouter", "Enlever", etc.) déclenchent des fonctions couvertes dans les tests. Cela explique pourquoi la couverture globale semble inférieure, bien que toutes les logiques critiques soient testées.
+- `src/carte_le_gaulois/carte_le_gaulois.py` : Le fichier principal contenant l'application Streamlit. Il gère l'interface utilisateur, l'affichage interactif des cartes, ainsi que la logique de gestion des départements et des doublons.
+- `src/departements.geojson` : Fichier GeoJSON contenant les données géographiques des départements français. Il est utilisé pour générer les cartes interactives et afficher les départements en fonction de leur statut (possédé, manquant, doublon).
+- `tests/` : Dossier contenant les tests unitaires pour vérifier le bon fonctionnement du code. Ces tests couvrent les fonctions critiques du projet, comme l'ajout, la suppression des départements et la gestion des doublons.
+- `requirements.txt` : Fichier listant toutes les dépendances nécessaires pour faire fonctionner le projet. Il inclut les bibliothèques comme Streamlit, GeoPandas, Folium, etc.
 
 ## Prérequis
 
-- Python 3.9.20
-- Streamlit 1.40.1
-- Folium
-- GeoPandas
+python==3.9.20
+pillow==9.5.0
+streamlit==1.40.1
+geopandas==0.14.0
+folium==0.14.0
+streamlit-folium==0.11.0
+pytest==7.4.0
+pytest-cov==4.1.0
+black==23.9.1
+coverage==7.3.1
+ruff==0.8.0
+pylint==3.3.1
 
 ## Installation
 
 1. Clonez ce dépôt.
-2. Ouvrir le terminal dans le dossier py_carte_le_gaulois
-2. Installez les dépendances nécessaires :
+2. Ouvrir le terminal dans le dossier C:\Users\<nom>\Desktop\carte_le_gaulois
+3. Installez les dépendances nécessaires :
    ```bash
-   pip install -r requirements.txt #Si vous utilisez pip
-      # OU
    conda install --file requirements.txt #Si vous utilisez conda
    ```
-3. Lancez l'application Streamlit :
+4. Dans le fichier src\carte_le_gaulois\carte_le_gaulois.py à la ligne 14, mettre le chemin d'accès au fichier departements.geojson
+   Exemple : "C:\Users\<nom>\Desktop\carte_le_gaulois\src\carte_le_gaulois\departements.geojson"
+
+5. Réalisez les tests :
+
+5. Lancez l'application Streamlit :
    ```bash
-   streamlit run carte_le_gaulois.py
-      #OU
    conda run streamlit run .\src\carte_le_gaulois\carte_le_gaulois.py
    ```
-4. Suivre l'explication ci-dessous pour utiliser la carte intéractive
+6. Suivre l'explication ci-dessous pour utiliser la carte intéractive
 
 ## Utilisation de la carte 
 
@@ -68,6 +74,24 @@ Les tests couvrent 69 % du code. Cependant, les interactions utilisateur via les
       Le nom du département
       Son statut (Possédé ou Manquant)
 
+
+## Black
+
+Le fichier carte_le_gaulois.py a été reformaté en utilisant black
+```bash
+conda run black .\carte_le_gaulois.py
+```
+
+## Coverage
+
+Pour vérifier la couverture :
+```bash
+conda run coverage run .\src\carte_le_gaulois\carte_le_gaulois.py
+conda run coverage report
+```
+- Les tests couvrent 69 % du code. Cependant, les interactions utilisateur via les boutons Streamlit (comme "Ajouter", "Enlever", etc.) déclenchent des fonctions couvertes dans les tests. Cela explique pourquoi la couverture globale semble inférieure, bien que toutes les logiques critiques soient testées.
+- En ouvrant le rapport en html (```conda run coverage html```), nous nous rendons compte que les fonctions non couvertes sont les boutons. 
+
 ## Tests
 
 Les tests unitaires utilisent `pytest`. Pour exécuter les tests :
@@ -75,16 +99,18 @@ Les tests unitaires utilisent `pytest`. Pour exécuter les tests :
 conda run pytest --cov tests/
 ```
 
-Pour vérifier la couverture :
+## Pylint check
+
+Pour analyser le code :
 ```bash
-conda run coverage run .\src\carte_le_gaulois\carte_le_gaulois.py
-conda run coverage report
+conda run pylint .\carte_le_gaulois.py
 ```
 
 ## Remarques
 
 - Les boutons Streamlit déclenchent des fonctions directement testées, ce qui garantit leur bon fonctionnement même si leur interaction directe n'est pas comptabilisée dans la couverture du code.
 - Si vous avez des idées d'amélioration ou des suggestions, n'hésitez pas à contribuer !
+
 
 ## Auteur
 
