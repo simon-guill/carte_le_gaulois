@@ -45,11 +45,11 @@ pylint==3.3.1
 
 5. Réalisez les tests :
 
-5. Lancez l'application Streamlit :
+6. Lancez l'application Streamlit :
    ```bash
    conda run streamlit run .\src\carte_le_gaulois\carte_le_gaulois.py
    ```
-6. Suivre l'explication ci-dessous pour utiliser la carte intéractive
+7. Suivre l'explication ci-dessous pour utiliser la carte intéractive
 
 ## Utilisation de la carte 
 

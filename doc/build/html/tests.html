@@ -35,13 +35,36 @@
             
   <section id="tests">
 <h1>Tests<a class="headerlink" href="#tests" title="Lien vers cette rubrique">¶</a></h1>
-<p>Pour exécuter les tests unitaires, utilisez la commande suivante :
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pytest</span> <span class="pre">--cov=carte_le_gaulois</span> <span class="pre">tests/</span>
-<span class="pre">`</span></code></p>
-<p>Cela génère un rapport de couverture pour le projet.</p>
 <p><strong>Dossier des tests :</strong>
 - <strong>`tests/test_carte.py`</strong> : Tests pour les fonctionnalités principales.</p>
+<p>Pour exécuter les tests unitaires, utilisez la commande suivante :
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">pytest</span> <span class="pre">--cov</span> <span class="pre">tests/</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Black</p></li>
+</ul>
+<p>Le fichier carte_le_gaulois.py a été reformaté en utilisant black
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">black</span> <span class="pre">.\carte_le_gaulois.py</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Coverage</p></li>
+</ul>
+<p>Pour vérifier la couverture :
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">coverage</span> <span class="pre">run</span> <span class="pre">.\src\carte_le_gaulois\carte_le_gaulois.py</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">coverage</span> <span class="pre">report</span>
+<span class="pre">`</span></code>
+- Les tests couvrent 69 % du code. Cependant, les interactions utilisateur via les boutons Streamlit (comme « Ajouter », « Enlever », etc.) déclenchent des fonctions couvertes dans les tests. Cela explique pourquoi la couverture globale semble inférieure, bien que toutes les logiques critiques soient testées.
+- En ouvrant le rapport en html (<code class="docutils literal notranslate"><span class="pre">`conda</span> <span class="pre">run</span> <span class="pre">coverage</span> <span class="pre">html`</span></code>), nous nous rendons compte que les fonctions non couvertes sont les boutons.</p>
+<ul class="simple">
+<li><p>Pylint check</p></li>
+</ul>
+<p>Pour analyser le code :
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">pylint</span> <span class="pre">.\carte_le_gaulois.py</span>
+<span class="pre">`</span></code></p>
 </section>
 
 

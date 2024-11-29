@@ -36,20 +36,25 @@
   <section id="utilisation">
 <h1>Utilisation<a class="headerlink" href="#utilisation" title="Lien vers cette rubrique">¶</a></h1>
 <p>L’application propose une carte interactive pour gérer votre collection.</p>
-<p><strong>Étapes principales</strong> :
-1. Lancer l’application avec :</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">src/carte_le_gaulois.py</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p>Dans l’interface :
-- Ajoutez ou retirez des départements.
-- Gérez les doublons directement sur la carte interactive.
-- Visualisez les données sur deux cartes : départements possédés et doublons.</p></li>
+<ol class="arabic">
+<li><p>Ajouter un département :</p>
+<p>Utilisez le menu déroulant pour sélectionner un département manquant.
+Cliquez sur le bouton « Ajouter ». Le département sélectionné sera alors ajouté à la carte et apparaîtra en vert (indiquant qu’il est maintenant possédé).</p>
+</li>
+<li><p>Enlever un département :</p>
+<p>Sélectionnez un département déjà possédé dans le menu déroulant.
+Cliquez sur « Enlever » pour retirer le département de la carte. Il réapparaîtra en rouge, signalant qu’il est maintenant manquant.</p>
+</li>
+<li><p>Gérer les doublons :</p>
+<p>Vous pouvez ajouter ou supprimer des doublons pour un département.
+Lorsqu’un département est marqué comme doublon, il apparaîtra en jaune sur la carte, avec l’indication du nombre de doublons pour ce département.
+Sélectionnez un département dans le menu pour ajouter ou retirer un doublon.</p>
+</li>
+<li><p>Interactivité de la carte :
+Info-bulles : En survolant un département, une info-bulle affiche des informations détaillées :
+Le nom du département
+Son statut (Possédé ou Manquant)</p></li>
 </ol>
-<p>Pour plus de détails, consultez la section « Structure du projet ».</p>
 </section>
 
 

@@ -37,18 +37,21 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Lien vers cette rubrique">¶</a></h1>
 <p>Pour installer le projet, suivez les étapes ci-dessous :</p>
 <ol class="arabic simple">
-<li><p>Clonez le dépôt :
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/votre-repo/carte_le_gaulois.git</span>
-<span class="pre">`</span></code></p></li>
+<li><p>Clonez ce dépôt.</p></li>
+<li><p>Ouvrir le terminal dans le dossier <code class="docutils literal notranslate"><span class="pre">`C:\Users\&lt;nom&gt;\Desktop\carte_le_gaulois`</span></code></p></li>
 <li><p>Installez les dépendances nécessaires :
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">install</span> <span class="pre">--file</span> <span class="pre">requirements.txt</span> <span class="pre">#Si</span> <span class="pre">vous</span> <span class="pre">utilisez</span> <span class="pre">conda</span>
 <span class="pre">`</span></code></p></li>
+<li><p>Dans le fichier src/carte_le_gaulois/carte_le_gaulois.py à la ligne 14, mettre le chemin d’accès au fichier departements.geojson
+Exemple : <code class="docutils literal notranslate"><span class="pre">`&quot;C:\Users\&lt;nom&gt;\Desktop\carte_le_gaulois\src\carte_le_gaulois\departements.geojson&quot;`</span></code></p></li>
+<li><p>Réalisez les tests
+Suivre la section <strong>Tests</strong> de la documentation</p></li>
 <li><p>Lancez l’application Streamlit :
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">src/carte_le_gaulois.py</span>
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">conda</span> <span class="pre">run</span> <span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">.\src\carte_le_gaulois\carte_le_gaulois.py</span>
 <span class="pre">`</span></code></p></li>
+<li><p>Suivre la section utilisation pour interagir avec la carte</p></li>
 </ol>
 </section>
 
