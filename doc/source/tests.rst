@@ -31,5 +31,5 @@ conda run coverage report
 
 Pour analyser le code :
 ```bash
-conda run pylint .\carte_le_gaulois.py
+conda run pylint .\src\carte_le_gaulois\carte_le_gaulois.py
 ```

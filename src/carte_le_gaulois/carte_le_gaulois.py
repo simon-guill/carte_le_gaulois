@@ -11,7 +11,7 @@ from streamlit_folium import st_folium
 
 # Chargement du fichier GeoJSON des départements
 # Il faut modifier le chemin en fonction de l'emplacement du dossier
-geojson_path = r"C:\Users\tomga\Desktop\py_carte_le_gaulois\src\carte_le_gaulois\departements.geojson"
+geojson_path = r"C:\Users\tomga\Desktop\carte_le_gaulois\src\carte_le_gaulois\departements.geojson"
 departements = gpd.read_file(geojson_path)
 
 # Initialisation des listes dans la session Streamlit si elles n'existent pas encore
