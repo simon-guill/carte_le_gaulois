@@ -32,23 +32,28 @@ coverage==7.3.1
 ruff==0.8.0
 pylint==3.3.1
 
+## Documentation
+
+Vous avez accès à une documentation .HTML en ouvrant le document index.html présent dans 
+``\carte_le_gaulois\doc\build\html``
+
 ## Installation
 
 1. Clonez ce dépôt.
+
 2. Ouvrir le terminal dans le dossier C:\Users\<nom>\Desktop\carte_le_gaulois
+
 3. Installez les dépendances nécessaires :
-   ```bash
-   conda install --file requirements.txt #Si vous utilisez conda
-   ```
-4. Dans le fichier src\carte_le_gaulois\carte_le_gaulois.py à la ligne 14, mettre le chemin d'accès au fichier departements.geojson
-   Exemple : "C:\Users\<nom>\Desktop\carte_le_gaulois\src\carte_le_gaulois\departements.geojson"
+   ``conda install --file requirements.txt #Si vous utilisez conda``
+
+4. Dans le fichier ``src\carte_le_gaulois\carte_le_gaulois.py`` à la ligne 14, mettre le chemin d'accès au fichier departements.geojson
+   Exemple : ``C:\Users\<nom>\Desktop\carte_le_gaulois\src\carte_le_gaulois\departements.geojson``
 
 5. Réalisez les tests :
 
 6. Lancez l'application Streamlit :
-   ```bash
-   conda run streamlit run .\src\carte_le_gaulois\carte_le_gaulois.py
-   ```
+   ``conda run streamlit run .\src\carte_le_gaulois\carte_le_gaulois.py``
+
 7. Suivre l'explication ci-dessous pour utiliser la carte intéractive
 
 ## Utilisation de la carte 
@@ -78,33 +83,27 @@ pylint==3.3.1
 ## Black
 
 Le fichier carte_le_gaulois.py a été reformaté en utilisant black
-```bash
-conda run black .\carte_le_gaulois.py
-```
+``conda run black .\src\carte_le_gaulois\carte_le_gaulois.py``
 
 ## Coverage
 
 Pour vérifier la couverture :
-```bash
-conda run coverage run .\src\carte_le_gaulois\carte_le_gaulois.py
-conda run coverage report
-```
+``conda run coverage run .\src\carte_le_gaulois\carte_le_gaulois.py``
+puis
+``conda run coverage report``
+
 - Les tests couvrent 69 % du code. Cependant, les interactions utilisateur via les boutons Streamlit (comme "Ajouter", "Enlever", etc.) déclenchent des fonctions couvertes dans les tests. Cela explique pourquoi la couverture globale semble inférieure, bien que toutes les logiques critiques soient testées.
 - En ouvrant le rapport en html (```conda run coverage html```), nous nous rendons compte que les fonctions non couvertes sont les boutons. 
 
 ## Tests
 
 Les tests unitaires utilisent `pytest`. Pour exécuter les tests :
-```bash
-conda run pytest --cov tests/
-```
+``conda run pytest --cov tests/``
 
 ## Pylint check
 
 Pour analyser le code :
-```bash
-conda run pylint .\carte_le_gaulois.py
-```
+``conda run pylint .\carte_le_gaulois.py``
 
 ## Remarques
 

@@ -14,9 +14,7 @@ Contents:
    installation
    utilisation
    structure_projet
-   api
    tests
-   contributions
 
 Indices and tables
 ==================
